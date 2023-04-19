@@ -14,6 +14,8 @@
 
 -module(cowboy_http3).
 
+-if(is_module(quicer)).
+
 -export([init/2]).
 
 -include_lib("quicer/include/quicer.hrl").
@@ -252,3 +254,4 @@ stream_closed(State=#state{streams=Streams0}, StreamRef, _Flags) ->
 
 stream_update(State=#state{streams=Streams}, Stream=#stream{ref=StreamRef}) ->
 	State#state{streams=Streams#{StreamRef => Stream}}.
+-endif.
